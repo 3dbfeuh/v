@@ -209,70 +209,8 @@ GUI.CreateButton({
 })
 GUI.CreateDivider("MISC")
 GUI.CreateButton({
-	["Name"] = "Friends",
-	["Function"] = function(callback) Friends.SetVisible(callback) end, 
-})
-GUI.CreateButton({
 	["Name"] = "Profiles",
 	["Function"] = function(callback) Profiles.SetVisible(callback) end, 
-})
-local FriendsTextList = {["RefreshValues"] = function() end}
-local FriendsColor = {["Value"] = 0.44}
-FriendsTextList = Friends.CreateCircleTextList({
-	["Name"] = "FriendsList",
-	["TempText"] = "Username / Alias",
-	["Color"] = Color3.fromRGB(5, 133, 104),
-	["CustomFunction"] = function(obj)
-		obj.ItemText.TextColor3 = Color3.new(1, 1, 1)
-		local friendcircle = Instance.new("Frame")
-		friendcircle.Size = UDim2.new(0, 10, 0, 10)
-		friendcircle.Name = "FriendCircle"
-		friendcircle.BackgroundColor3 = Color3.fromHSV(FriendsColor["Value"], 0.7, 0.9)
-		friendcircle.BorderSizePixel = 0
-		friendcircle.Position = UDim2.new(0, 10, 0, 13)
-		friendcircle.Parent = obj
-		local friendcorner = Instance.new("UICorner")
-		friendcorner.CornerRadius = UDim.new(0, 8)
-		friendcorner.Parent = friendcircle
-		obj.ItemText.Position = UDim2.new(0, 36, 0, 0)
-		obj.ItemText.Size = UDim2.new(0, 157, 0, 33)
-	end
-})
-FriendsTextList.FriendRefresh = Instance.new("BindableEvent")
-spawn(function()
-	local currentval = #FriendsTextList["ObjectList"]
-	repeat
-		task.wait(0.1)
-		if currentval ~= #FriendsTextList["ObjectList"] then
-			FriendsTextList.FriendRefresh:Fire()
-		end
-		currentval = #FriendsTextList["ObjectList"]
-	until (not shared.VapeExecuted)
-end)
-Friends.CreateToggle({
-	["Name"] = "Use Friends",
-	["Function"] = function(callback) end,
-	["Default"] = true
-})
-Friends.CreateToggle({
-	["Name"] = "Use Alias",
-	["Function"] = function(callback) end,
-	["Default"] = true,
-})
-Friends.CreateToggle({
-	["Name"] = "Spoof alias",
-	["Function"] = function(callback) end,
-})
-Friends.CreateToggle({
-	["Name"] = "Recolor visuals",
-	["Function"] = function(callback) end,
-	["Default"] = true
-})
-FriendsColor = Friends.CreateColorSlider({
-	["Name"] = "Friends Color", 
-	["Function"] = function(val) 
-
-	end
 })
 local ProfilesTextList = {["RefreshValues"] = function() end}
 local profilesloaded = false
@@ -1059,32 +997,19 @@ GUI.CreateCustomToggle({
 local GeneralSettings = GUI.CreateDivider2("General Settings")
 local ModuleSettings = GUI.CreateDivider2("Module Settings")
 local GUISettings = GUI.CreateDivider2("GUI Settings")
-ModuleSettings.CreateToggle({
-	["Name"] = "Teams by server", 
-	["Function"] = function() end,
-})
-ModuleSettings.CreateToggle({
-	["Name"] = "Teams by color", 
-	["Function"] = function() end,
-	["Default"] = true,
-	["HoverText"] = "Ignore players with the selected name color"
-})
+local LocalPlayer = game:GetService("Players").LocalPlayer
+local mouse = LocalPlayer:GetMouse()
 local MiddleClickInput
 ModuleSettings.CreateToggle({
-	["Name"] = "MiddleClick friends", 
-	["Function"] = function(callback) 
+	["Name"] = "MiddleClick Friends",
+	["Function"] = function(callback)
 		if callback then
-			MiddleClickInput = game:GetService("UserInputService").InputBegan:connect(function(input1)
-				if input1.UserInputType == Enum.UserInputType.MouseButton3 then
+			MiddleClickInput = game:GetService("UserInputService").InputBegan:Connect(function(Input, GameProccessed)
+				if not GameProccessed and Input.UserInputType == Enum.UserInputType.MouseButton3 then
 					if mouse.Target.Parent:FindFirstChild("HumanoidRootPart") or mouse.Target.Parent:IsA("Accessory") and mouse.Target.Parent.Parent:FindFirstChild("HumanoidRootPart") then
-						local user = (mouse.Target.Parent:IsA("Accessory") and mouse.Target.Parent.Parent.Name or mouse.Target.Parent.Name)
-						if table.find(FriendsTextList["ObjectList"], user) == nil then
-							table.insert(FriendsTextList["ObjectList"], user)
-							FriendsTextList["RefreshValues"](FriendsTextList["ObjectList"])
-						else
-							table.remove(FriendsTextList["ObjectList"], table.find(FriendsTextList["ObjectList"], user)) 
-							FriendsTextList["RefreshValues"](FriendsTextList["ObjectList"])
-						end
+						local username = (mouse.Target.Parent:IsA("Accessory") and mouse.Target.Parent.Parent.Name or mouse.Target.Parent.Name)
+						local user = game:GetService("Players"):FindFirstChild(username)
+						LocalPlayer:RequestFriendship(user)
 					end
 				end
 			end)
@@ -1103,7 +1028,7 @@ ModuleSettings.CreateToggle({
 	["HoverText"] = "Temporarily disables certain features in server lobbies."
 })
 local blatantmode = GUI.CreateToggle({
-	["Name"] = "Blatant mode",
+	["Name"] = "Blatant Mode",
 	["Function"] = function() end,
 	["HoverText"] = "Required for certain features."
 })
