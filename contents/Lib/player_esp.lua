@@ -8,6 +8,7 @@ local Recursion = {} do
     
     local Players = game:GetService("Players")
     local RunService = game:GetService("RunService")
+    local Teams = game:GetService("Teams")
     local LocalPlayer = Players.LocalPlayer
     local cam = workspace.CurrentCamera
     local headOffset = Vector3.new(0, 0.5, 0)
@@ -72,7 +73,7 @@ local Recursion = {} do
                         Box.Color = plr.TeamColor.Color
                         Lines.Color = plr.TeamColor.Color
                         Names.Color = plr.TeamColor.Color
-                        if ESP_Settings["Team Names"] then
+                        if #Teams:GetChildren() ~= 0 and ESP_Settings["Team Names"] then
                             Names.Text = GetUsername(plr) .. " | " .. tostring(plr.Team.Name)
                         else
                             Names.Text = GetUsername(plr)
