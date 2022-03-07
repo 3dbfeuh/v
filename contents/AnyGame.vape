@@ -1,4 +1,3 @@
--- Credits to Inf Yield & all the other scripts that helped me make bypasses
 local GuiLibrary = shared.GuiLibrary
 local customdir = (shared.VapePrivate and "vapeprivate/" or "vape-v4/")
 local players = game:GetService("Players")
@@ -193,7 +192,7 @@ local radarcam = Instance.new("Camera")
 radarcam.FieldOfView = 45
 local Radar = GuiLibrary.CreateCustomWindow({
 	["Name"] = "Radar", 
-	["Icon"] = "vape/assets/RadarIcon1.png",
+	["Icon"] = customdir .. "assets/RadarIcon1.png",
 	["IconSize"] = 16
 })
 local RadarColor = Radar.CreateColorSlider({
@@ -250,7 +249,7 @@ players.PlayerRemoving:connect(function(plr)
 end)
 GuiLibrary["ObjectsThatCanBeSaved"]["GUIWindow"]["Api"].CreateCustomToggle({
 	["Name"] = "Radar", 
-	["Icon"] = "vape/assets/RadarIcon2.png", 
+	["Icon"] = customdir .. "assets/RadarIcon2.png", 
 	["Function"] = function(callback)
 		Radar.SetVisible(callback) 
 		if callback then
@@ -1564,7 +1563,7 @@ ChamsBetter = Chams.CreateToggle({
 	["Name"] = "New Highlight Chams",
 	["Function"] = function(callback)
 		if callback then
-			local suc = pcall(function() return readfile("vape/Profiles/HighlightCheck.vapesetting.txt") end)
+			local suc = pcall(function() return readfile(customdir .. "Profiles/HighlightCheck.vapesetting.txt") end)
 			if not suc then
 				if ChamsBetter["Enabled"] then
 					ChamsBetter["ToggleButton"](false)
