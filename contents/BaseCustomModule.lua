@@ -4,6 +4,7 @@ local players = game:GetService("Players")
 local textservice = game:GetService("TextService")
 local lplr = players.LocalPlayer
 local workspace = game:GetService("Workspace")
+local RunService = game:GetService("RunService")
 local lighting = game:GetService("Lighting")
 local cam = workspace.CurrentCamera
 local targetinfo = shared.VapeTargetInfo
@@ -15,25 +16,25 @@ local getasset = getsynasset or getcustomasset
 local RenderStepTable = {}
 local StepTable = {}
 
-local function BindToRenderStep(name, num, func)
+local BindToRenderStep = function(name, num, func)
 	if RenderStepTable[name] == nil then
-		RenderStepTable[name] = game:GetService("RunService").RenderStepped:connect(func)
+		RenderStepTable[name] = RunService.RenderStepped:Connect(func)
 	end
 end
-local function UnbindFromRenderStep(name)
-	if RenderStepTable[name] then
+local UnbindFromRenderStep = function(name)
+	if RenderStepTable[name] ~= nil then
 		RenderStepTable[name]:Disconnect()
 		RenderStepTable[name] = nil
 	end
 end
 
-local function BindToStepped(name, num, func)
+local BindToStepped = function(name, num, func)
 	if StepTable[name] == nil then
-		StepTable[name] = game:GetService("RunService").Stepped:connect(func)
+		StepTable[name] = RunService.Stepped:Connect(func)
 	end
 end
-local function UnbindFromStepped(name)
-	if StepTable[name] then
+local UnbindFromStepped = function(name)
+	if StepTable[name] ~= nil then
 		StepTable[name]:Disconnect()
 		StepTable[name] = nil
 	end
@@ -52,7 +53,7 @@ local function getcustomassetfunc(path)
 		spawn(function()
 			local textlabel = Instance.new("TextLabel")
 			textlabel.Size = UDim2.new(1, 0, 0, 36)
-			textlabel.Text = "Downloading "..path
+			textlabel.Text = "Downloading " .. path
 			textlabel.BackgroundTransparency = 1
 			textlabel.TextStrokeTransparency = 0
 			textlabel.TextSize = 30
@@ -64,7 +65,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..path:gsub("vape/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/" .. path:gsub(customdir .. "assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)
@@ -138,8 +139,8 @@ local function CalculateLine(startVector, endVector, obj)
 	obj.Rotation = math.atan2(endVector.Y - startVector.Y, endVector.X - startVector.X) * (180 / math.pi)
 end
 
-local function findTouchInterest(tool)
-	for i,v in pairs(tool:GetDescendants()) do
+local findTouchInterest = function(tool)
+	for i, v in pairs(tool:GetDescendants()) do
 		if v:IsA("TouchTransmitter") then
 			return v
 		end
