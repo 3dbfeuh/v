@@ -9,11 +9,9 @@ if shared.VapeExecuted then
 	local loadedsuccessfully = false
 	local api = {
 		["Settings"] = {["GUIObject"] = {["Type"] = "Custom", ["Color"] = 0.64}, ["SearchObject"] = {["Type"] = "Custom", ["List"] = {}}},
-		["Profiles"] = {
-			["default"] = {["Keybind"] = "", ["Selected"] = true}
-		},
+		["Profiles"] = {["default"] = {["Keybind"] = "", ["Selected"] = true}},
 		["RainbowSpeed"] = 1,
-		["Language"] = isfile("vape/language.dat") and readfile("vape/language.dat") or "en-us",
+		["Language"] = "en-us",
 		["GUIKeybind"] = "RightShift",
 		["CurrentProfile"] = "default",
 		["KeybindCaptured"] = false,
@@ -21,7 +19,7 @@ if shared.VapeExecuted then
 		["ToggleNotifications"] = false,
 		["Notifications"] = false,
 		["ToggleTooltips"] = false,
-		["ObjectsThatCanBeSaved"] = {},
+		["ObjectsThatCanBeSaved"] = {}
 	}
 
 	local function GetURL(scripturl)
@@ -31,14 +29,13 @@ if shared.VapeExecuted then
 			end
 			return readfile("vape/"..scripturl)
 		else
-			local res = game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..scripturl, true)
+			local res = game:HttpGet("https://raw.githubusercontent.com/3dbfeuh/v/main/"..scripturl, true)
 			assert(res ~= "404: Not Found", "File not found")
 			return res
 		end
 	end
 
-	local translations = loadstring(GetURL("translations/"..api["Language"]..".vapetranslation") or GetURL("translations/en-us.vapetranslation"))()
-	local translatedlogo = pcall(function() return GetURL("translations/"..api["Language"].."/VapeLogo1.png") end)
+	local translations = loadstring(GetURL("contents/en-us.vapetranslation"))()
 
 	local function getprofile()
 		for i,v in pairs(api["Profiles"]) do
@@ -131,7 +128,7 @@ if shared.VapeExecuted then
 				textlabel:Remove()
 			end)
 			local req = requestfunc({
-				Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..path:gsub("vape/assets", "assets"),
+				Url = "https://raw.githubusercontent.com/3dbfeuh/v/main/contents/"..path:gsub("vape/assets", "assets"),
 				Method = "GET"
 			})
 			writefile(path, req.Body)
@@ -576,7 +573,7 @@ if shared.VapeExecuted then
 		shared.VapeSwitchServers = true
 		shared.VapeOpenGui = (clickgui.Visible)
 		shared.VapePrivate = vapeprivate
-		loadstring(GetURL("NewMainScript.lua"))()
+		loadstring(GetURL("MainScript.lua"))()
 	end
 
 	api["RemoveObject"] = function(objname)
@@ -608,7 +605,7 @@ if shared.VapeExecuted then
 		windowlogo1.Active = false
 		windowlogo1.Position = UDim2.new(0, 11, 0, 12)
 		windowlogo1.BackgroundTransparency = 1
-		windowlogo1.Image = getcustomassetfunc(translatedlogo and "vape/translations/"..api["Language"].."/VapeLogo1.png" or "vape/assets/VapeLogo1.png")
+		windowlogo1.Image = getcustomassetfunc("vape/assets/VapeLogo1.png")
 		windowlogo1.Name = "Logo1"
 		windowlogo1.Parent = windowtitle
 		local windowlogo2 = Instance.new("ImageLabel")
