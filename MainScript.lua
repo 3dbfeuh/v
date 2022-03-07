@@ -1191,7 +1191,7 @@ GUISettings.CreateToggle({
 	["HoverText"] = "Toggles visibility of these"
 })
 GeneralSettings.CreateToggle({
-	["Name"] = "Discord Integration", 
+	["Name"] = "Discord Integration",
 	["Function"] = function() end
 })
 local ToggleNotifications = {["Object"] = nil}
