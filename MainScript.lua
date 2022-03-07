@@ -1150,7 +1150,7 @@ GuiLibrary["UpdateUI"] = function()
 end
 
 GeneralSettings.CreateToggle({
-	["Name"] = "Auto-load module states", 
+	["Name"] = "Auto-Load Module States", 
 	["Function"] = function() end,
 	["HoverText"] = "Automatically enable saved module states upon loading profiles.\n(You can save module states by shift-clicking a profile button)"
 })
@@ -1179,7 +1179,7 @@ GeneralSettings.CreateToggle({
 	["Function"] = function() end
 })
 local welcomemsg = GUISettings.CreateToggle({
-	["Name"] = "GUI bind indicator", 
+	["Name"] = "GUI Bind Indicator", 
 	["Function"] = function() end, 
 	["Default"] = true,
 	["HoverText"] = 'Displays a message indicating your GUI keybind upon injecting.\nI.E "Press RIGHTSHIFT to open GUI"'
@@ -1191,7 +1191,7 @@ GUISettings.CreateToggle({
 	["HoverText"] = "Toggles visibility of these"
 })
 GeneralSettings.CreateToggle({
-	["Name"] = "Discord integration", 
+	["Name"] = "Discord Integration", 
 	["Function"] = function() end
 })
 local ToggleNotifications = {["Object"] = nil}
