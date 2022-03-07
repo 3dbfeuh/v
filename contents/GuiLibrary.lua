@@ -35,7 +35,7 @@ if shared.VapeExecuted then
 		end
 	end
 
-	local translations = loadstring(GetURL("contents/en-us.vapetranslation"))()
+	local translations = {}
 
 	local function getprofile()
 		for i,v in pairs(api["Profiles"]) do
