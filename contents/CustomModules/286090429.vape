@@ -15,7 +15,7 @@ runcode(function()
 		["Name"] = "Body Part",
 		["List"] = {"Head", "Torso", "Random"},
 		["Function"] = function(callback)
-            SilentAim.Set("BodyPartToAim", callback)
+            SilentAim.Set("BodyPartToAim", PartToFire["Value"])
         end,
 	})
     local TeamCheck = {["Enabled"] = false} TeamCheck = SilentAim.CreateToggle({
