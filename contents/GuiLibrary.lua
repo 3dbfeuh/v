@@ -1,5 +1,5 @@
 if shared.VapeExecuted then
-	local VERSION = "v4.07"..(shared.VapePrivate and " PRIVATE" or "")
+	local VERSION = "v4.07" .. (shared.VapePrivate and " PRIVATE" or "")
 	local customdir = (shared.VapePrivate and "vapeprivate/" or "vape-v4/")
 	local rainbowvalue = 0
 	local cam = game:GetService("Workspace").CurrentCamera
@@ -648,6 +648,7 @@ if shared.VapeExecuted then
 		discordbutton.ImageColor3 = Color3.new(1, 1, 1)
 		discordbutton.Image = getcustomassetfunc(customdir .. "assets/DiscordIcon.png")
 		discordbutton.Position = UDim2.new(1, -52, 0, 13)
+		discordbutton.Visible = false
 		discordbutton.Parent = windowtitle
 		discordbutton.MouseButton1Click:connect(function()
 			spawn(function()
