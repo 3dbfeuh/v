@@ -3,7 +3,7 @@ local customdir = (shared.VapePrivate and "vapeprivate/" or "vape-v4/")
 local function GetURL(scripturl)
 	if shared.VapeDeveloper then
 		if not isfile(customdir .. scripturl) then
-			error("File not found : vape/"..scripturl)
+			error("File not found : " .. customdir .. scripturl)
 		end
 		return readfile(customdir .. scripturl)
 	else
@@ -62,18 +62,18 @@ if isfolder(customdir .. "Profiles") == false then
 	makefolder(customdir .. "Profiles")
 end
 local assetver = checkassetversion()
-if assetver and assetver > readfile("vape/assetsversion.dat") then
+if assetver and assetver > readfile(customdir .. "assetsversion.dat") then
 	if shared.VapeDeveloper == nil then
-		if isfolder("vape/assets") then
+		if isfolder(customdir .. "assets") then
 			if delfolder then
-				delfolder("vape/assets")
+				delfolder(customdir .. "assets")
 			end
 		end
-		writefile("vape/assetsversion.dat", assetver)
+		writefile(customdir .. "assetsversion.dat", assetver)
 	end
 end
-if isfolder("vape/assets") == false then
-	makefolder("vape/assets")
+if isfolder(customdir .. "assets") == false then
+	makefolder(customdir .. "assets")
 end
 
 local GuiLibrary = loadstring(GetURL("contents/GuiLibrary.lua"))()
@@ -550,7 +550,7 @@ OnlineProfilesButton.MouseButton1Click:connect(function()
 	if profilesloaded == false then
 		local onlineprofiles = {}
 		local success, result = pcall(function()
-			return game:GetService("HttpService"):JSONDecode((shared.VapeDeveloper and readfile("vape/OnlineProfiles.vapeonline") or game:HttpGet("https://raw.githubusercontent.com/3dbfeuh/v/main/contents/OnlineProfiles.vapeonline", true)))
+			return game:GetService("HttpService"):JSONDecode((shared.VapeDeveloper and readfile(customdir .. "OnlineProfiles.vapeonline") or game:HttpGet("https://raw.githubusercontent.com/3dbfeuh/v/main/contents/OnlineProfiles.vapeonline", true)))
 		end)
 		onlineprofiles = (success and result or {})
 		for i2,v2 in pairs(onlineprofiles) do
@@ -605,7 +605,7 @@ OnlineProfilesButton.MouseButton1Click:connect(function()
 					profiledownload.BackgroundColor3 = Color3.fromRGB(31, 30, 31)
 				end)
 				profiledownload.MouseButton1Click:connect(function()
-					writefile(customdir.."Profiles/"..v2["ProfileName"]..tostring(game.PlaceId)..".vapeprofile.txt", (shared.VapeDeveloper and readfile("vape/OnlineProfiles/"..v2["OnlineProfileName"]) or game:HttpGet("https://raw.githubusercontent.com/3dbfeuh/v/main/contents/OnlineProfiles/"..v2["OnlineProfileName"], true)))
+					writefile(customdir.."Profiles/"..v2["ProfileName"]..tostring(game.PlaceId)..".vapeprofile.txt", (shared.VapeDeveloper and readfile(customdir .. "OnlineProfiles/"..v2["OnlineProfileName"]) or game:HttpGet("https://raw.githubusercontent.com/3dbfeuh/v/main/contents/OnlineProfiles/"..v2["OnlineProfileName"], true)))
 					GuiLibrary["Profiles"][v2["ProfileName"]] = {["Keybind"] = "", ["Selected"] = false}
 					if table.find(ProfilesTextList["ObjectList"], v2["ProfileName"]) == nil then
 						table.insert(ProfilesTextList["ObjectList"], v2["ProfileName"])
@@ -663,7 +663,7 @@ onething.BackgroundColor3 = Color3.new(0, 0, 0)
 onething.BorderSizePixel = 0
 onething.BackgroundTransparency = 1
 onething.Visible = false
-onething.Image = getcustomassetfunc("vape/assets/VapeLogo3.png")
+onething.Image = getcustomassetfunc(customdir .. "assets/VapeLogo3.png")
 local onething2 = Instance.new("ImageLabel")
 onething2.Parent = onething
 onething2.Size = UDim2.new(0, 41, 0, 24)
@@ -672,7 +672,7 @@ onething2.Position = UDim2.new(1, 0, 0, 1)
 onething2.BorderSizePixel = 0
 onething2.BackgroundColor3 = Color3.new(0, 0, 0)
 onething2.BackgroundTransparency = 1
-onething2.Image = getcustomassetfunc("vape/assets/VapeLogo4.png")
+onething2.Image = getcustomassetfunc(customdir .. "assets/VapeLogo4.png")
 local onething3 = onething:Clone()
 onething3.ImageColor3 = Color3.new(0, 0, 0)
 onething3.ImageTransparency = 0.5
@@ -1302,7 +1302,7 @@ local GUIbind = GUI.CreateGUIBind()
 
 local teleportfunc = game:GetService("Players").LocalPlayer.OnTeleport:Connect(function(State)
     if State == Enum.TeleportState.Started then
-		local teleportstr = 'shared.VapeSwitchServers = true if shared.VapeDeveloper then loadstring(readfile("vape/NewMainScript.lua"))() else loadstring(game:HttpGet("https://raw.githubusercontent.com/3dbfeuh/v/main/MainScript.lua", true))() end'
+		local teleportstr = 'shared.VapeSwitchServers = true if shared.VapeDeveloper then loadstring(readfile("' .. customdir ..'MainScript.lua"))() else loadstring(game:HttpGet("https://raw.githubusercontent.com/3dbfeuh/v/main/MainScript.lua", true))() end'
 		if shared.VapeDeveloper then
 			teleportstr = 'shared.VapeDeveloper = true '..teleportstr
 		end
