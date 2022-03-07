@@ -14,7 +14,7 @@ runcode(function()
     local PartToFire = {["Value"] = "Head"} PartToFire = SilentAim.CreateDropdown({
 		["Name"] = "Body Part",
 		["List"] = {"Head", "Torso", "Random"},
-		["Function"] = function(callback)
+		["Function"] = function()
             SilentAim.Set("BodyPartToAim", PartToFire["Value"])
         end,
 	})
