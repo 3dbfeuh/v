@@ -83,14 +83,7 @@ runcode(function()
         ["Function"] = function(callback)
             Esp_Lib.Set("Enabled", callback)
         end,
-        ["HoverText"] = "Draws arrows on screen when users\nare out of your field of view."
-    })
-    local Tracers = {["Enabled"] = false} Tracers = ESP.CreateToggle({
-        ["Name"] = "Tracers",
-        ["Function"] = function(callback)
-            Esp_Lib.Set("Tracers", callback)
-        end,
-        ["Default"] = false
+        ["HoverText"] = "Draws a box on screen when users\nare out of your field of view."
     })
     local TeamNames = {["Enabled"] = false} TeamNames = ESP.CreateToggle({
         ["Name"] = "Team Names",
@@ -105,5 +98,12 @@ runcode(function()
             Esp_Lib.Set("Team Check", callback)
         end,
         ["Default"] = false
+    })
+    local Tracers = {["Enabled"] = false} Tracers = GuiLibrary["ObjectsThatCanBeSaved"]["RenderWindow"]["Api"].CreateOptionsButton({
+        ["Name"] = "Tracers",
+        ["Function"] = function(callback)
+            Esp_Lib.Set("Tracers", callback)
+        end,
+        ["HoverText"] = "Draws lines on screen when users\nare out of your field of view."
     })
 end)
