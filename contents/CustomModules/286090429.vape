@@ -14,14 +14,14 @@ runcode(function()
     local PartToFire = {["Value"] = "Head"} PartToFire = SilentAim.CreateDropdown({
 		["Name"] = "Body Part",
 		["List"] = {"Head", "Torso", "Random"},
-		["Function"] = function()
-            SilentAim.Set("BodyPartToAim", PartToFire["Value"])
+		["Function"] = function(callback)
+            Silent_Lib.Set("BodyPartToAim", callback)
         end,
 	})
     local TeamCheck = {["Enabled"] = false} TeamCheck = SilentAim.CreateToggle({
         ["Name"] = "Team Check",
         ["Function"] = function(callback)
-            SilentAim.Set("TeamCheck", callback)
+            Silent_Lib.Set("TeamCheck", callback)
         end,
         ["Default"] = false
     })
