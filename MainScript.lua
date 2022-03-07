@@ -143,85 +143,85 @@ local selfdestruct = false
 local GUI = GuiLibrary.CreateMainWindow()
 local Combat = GuiLibrary.CreateWindow({
 	["Name"] = "Combat", 
-	["Icon"] = "vape/assets/CombatIcon.png", 
+	["Icon"] = customdir .. "assets/CombatIcon.png",
 	["IconSize"] = 15
 })
 local Blatant = GuiLibrary.CreateWindow({
 	["Name"] = "Blatant", 
-	["Icon"] = "vape/assets/BlatantIcon.png", 
+	["Icon"] = customdir .. "assets/BlatantIcon.png",
 	["IconSize"] = 16
 })
 local Render = GuiLibrary.CreateWindow({
 	["Name"] = "Render", 
-	["Icon"] = "vape/assets/RenderIcon.png", 
+	["Icon"] = customdir .. "assets/RenderIcon.png",
 	["IconSize"] = 17
 })
 local Utility = GuiLibrary.CreateWindow({
 	["Name"] = "Utility", 
-	["Icon"] = "vape/assets/UtilityIcon.png", 
+	["Icon"] = customdir .. "assets/UtilityIcon.png",
 	["IconSize"] = 17
 })
 local World = GuiLibrary.CreateWindow({
 	["Name"] = "World", 
-	["Icon"] = "vape/assets/WorldIcon.png", 
+	["Icon"] = customdir .. "assets/WorldIcon.png",
 	["IconSize"] = 16
 })
 local Friends = GuiLibrary.CreateWindow2({
 	["Name"] = "Friends", 
-	["Icon"] = "vape/assets/FriendsIcon.png", 
+	["Icon"] = customdir .. "assets/FriendsIcon.png",
 	["IconSize"] = 17
 })
 local Profiles = GuiLibrary.CreateWindow2({
 	["Name"] = "Profiles", 
-	["Icon"] = "vape/assets/ProfilesIcon.png", 
+	["Icon"] = customdir .. "assets/ProfilesIcon.png",
 	["IconSize"] = 19
 })
 GUI.CreateDivider()
 GUI.CreateButton({
 	["Name"] = "Combat", 
 	["Function"] = function(callback) Combat.SetVisible(callback) end, 
-	["Icon"] = "vape/assets/CombatIcon.png", 
+	["Icon"] = customdir .. "assets/CombatIcon.png",
 	["IconSize"] = 15
 })
 GUI.CreateButton({
 	["Name"] = "Blatant", 
 	["Function"] = function(callback) Blatant.SetVisible(callback) end, 
-	["Icon"] = "vape/assets/BlatantIcon.png", 
+	["Icon"] = customdir .. "assets/BlatantIcon.png",
 	["IconSize"] = 16
 })
 GUI.CreateButton({
 	["Name"] = "Render", 
 	["Function"] = function(callback) Render.SetVisible(callback) end, 
-	["Icon"] = "vape/assets/RenderIcon.png", 
+	["Icon"] = customdir .. "assets/RenderIcon.png",
 	["IconSize"] = 17
 })
 GUI.CreateButton({
 	["Name"] = "Utility", 
 	["Function"] = function(callback) Utility.SetVisible(callback) end, 
-	["Icon"] = "vape/assets/UtilityIcon.png", 
+	["Icon"] = customdir .. "assets/UtilityIcon.png",
 	["IconSize"] = 17
 })
 GUI.CreateButton({
 	["Name"] = "World", 
 	["Function"] = function(callback) World.SetVisible(callback) end, 
-	["Icon"] = "vape/assets/WorldIcon.png", 
+	["Icon"] = customdir .. "assets/WorldIcon.png",
 	["IconSize"] = 16
 })
 GUI.CreateDivider("MISC")
 GUI.CreateButton({
-	["Name"] = "Friends", 
+	["Name"] = "Friends",
 	["Function"] = function(callback) Friends.SetVisible(callback) end, 
 })
 GUI.CreateButton({
-	["Name"] = "Profiles", 
+	["Name"] = "Profiles",
 	["Function"] = function(callback) Profiles.SetVisible(callback) end, 
 })
 local FriendsTextList = {["RefreshValues"] = function() end}
 local FriendsColor = {["Value"] = 0.44}
 FriendsTextList = Friends.CreateCircleTextList({
-	["Name"] = "FriendsList", 
-	["TempText"] = "Username / Alias", 
-	["Color"] = Color3.fromRGB(5, 133, 104),	
+	["Name"] = "FriendsList",
+	["TempText"] = "Username / Alias",
+	["Color"] = Color3.fromRGB(5, 133, 104),
 	["CustomFunction"] = function(obj)
 		obj.ItemText.TextColor3 = Color3.new(1, 1, 1)
 		local friendcircle = Instance.new("Frame")
@@ -307,7 +307,7 @@ ProfilesTextList = Profiles.CreateTextList({
 		bindbkg.Visible = GuiLibrary["Profiles"][profilename]["Keybind"] ~= ""
 		bindbkg.Parent = obj
 		local bindimg = Instance.new("ImageLabel")
-		bindimg.Image = getcustomassetfunc("vape/assets/KeybindIcon.png")
+		bindimg.Image = getcustomassetfunc(customdir .. "assets/KeybindIcon.png")
 		bindimg.BackgroundTransparency = 1
 		bindimg.Size = UDim2.new(0, 12, 0, 12)
 		bindimg.Position = UDim2.new(0, 4, 0, 5)
@@ -371,14 +371,14 @@ ProfilesTextList = Profiles.CreateTextList({
 			end
 		end)
 		bindbkg.MouseEnter:connect(function() 
-			bindimg.Image = getcustomassetfunc("vape/assets/PencilIcon.png") 
+			bindimg.Image = getcustomassetfunc(customdir .. "assets/PencilIcon.png") 
 			bindimg.Visible = true
 			bindtext.Visible = false
 			bindbkg.Size = UDim2.new(0, 20, 0, 21)
 			bindbkg.Position = UDim2.new(1, -50, 0, 6)
 		end)
 		bindbkg.MouseLeave:connect(function() 
-			bindimg.Image = getcustomassetfunc("vape/assets/KeybindIcon.png")
+			bindimg.Image = getcustomassetfunc(customdir .. "assets/KeybindIcon.png")
 			if GuiLibrary["Profiles"][profilename]["Keybind"] ~= "" then
 				bindimg.Visible = false
 				bindtext.Visible = true
@@ -432,7 +432,7 @@ local OnlineProfilesButtonImage = Instance.new("ImageLabel")
 OnlineProfilesButtonImage.BackgroundTransparency = 1
 OnlineProfilesButtonImage.Position = UDim2.new(0, 14, 0, 7)
 OnlineProfilesButtonImage.Size = UDim2.new(0, 17, 0, 16)
-OnlineProfilesButtonImage.Image = getcustomassetfunc("vape/assets/OnlineProfilesButton.png")
+OnlineProfilesButtonImage.Image = getcustomassetfunc(customdir .. "assets/OnlineProfilesButton.png")
 OnlineProfilesButtonImage.ImageColor3 = Color3.fromRGB(121, 121, 121)
 OnlineProfilesButtonImage.ZIndex = 1
 OnlineProfilesButtonImage.Active = false
@@ -453,7 +453,7 @@ OnlineProfilesExitButton.Name = "OnlineProfilesExitButton"
 OnlineProfilesExitButton.ImageColor3 = Color3.fromRGB(121, 121, 121)
 OnlineProfilesExitButton.Size = UDim2.new(0, 24, 0, 24)
 OnlineProfilesExitButton.AutoButtonColor = false
-OnlineProfilesExitButton.Image = getcustomassetfunc("vape/assets/ExitIcon1.png")
+OnlineProfilesExitButton.Image = getcustomassetfunc(customdir .. "assets/ExitIcon1.png")
 OnlineProfilesExitButton.Visible = true
 OnlineProfilesExitButton.Position = UDim2.new(1, -31, 0, 8)
 OnlineProfilesExitButton.BackgroundColor3 = Color3.fromRGB(26, 25, 26)
@@ -470,7 +470,7 @@ end)
 local OnlineProfilesFrameShadow = Instance.new("ImageLabel")
 OnlineProfilesFrameShadow.AnchorPoint = Vector2.new(0.5, 0.5)
 OnlineProfilesFrameShadow.Position = UDim2.new(0.5, 0, 0.5, 0)
-OnlineProfilesFrameShadow.Image = getcustomassetfunc("vape/assets/WindowBlur.png")
+OnlineProfilesFrameShadow.Image = getcustomassetfunc(customdir .. "assets/WindowBlur.png")
 OnlineProfilesFrameShadow.BackgroundTransparency = 1
 OnlineProfilesFrameShadow.ZIndex = -1
 OnlineProfilesFrameShadow.Size = UDim2.new(1, 6, 1, 6)
@@ -480,7 +480,7 @@ OnlineProfilesFrameShadow.SliceCenter = Rect.new(10, 10, 118, 118)
 OnlineProfilesFrameShadow.Parent = OnlineProfilesFrame
 local OnlineProfilesFrameIcon = Instance.new("ImageLabel")
 OnlineProfilesFrameIcon.Size = UDim2.new(0, 19, 0, 16)
-OnlineProfilesFrameIcon.Image = getcustomassetfunc("vape/assets/ProfilesIcon.png")
+OnlineProfilesFrameIcon.Image = getcustomassetfunc(customdir .. "assets/ProfilesIcon.png")
 OnlineProfilesFrameIcon.Name = "WindowIcon"
 OnlineProfilesFrameIcon.BackgroundTransparency = 1
 OnlineProfilesFrameIcon.Position = UDim2.new(0, 10, 0, 13)
@@ -632,18 +632,18 @@ OnlineProfilesExitButton.MouseButton1Click:connect(function()
 end)
 
 GUI.CreateDivider()
----GUI.CreateCustomButton("Favorites", "vape/assets/FavoritesListIcon.png", UDim2.new(0, 17, 0, 14), function() end, function() end)
---GUI.CreateCustomButton("Text GUIVertical", "vape/assets/TextGUIIcon3.png", UDim2.new(1, -56, 0, 15), function() end, function() end)
+---GUI.CreateCustomButton("Favorites", customdir .. "assets/FavoritesListIcon.png", UDim2.new(0, 17, 0, 14), function() end, function() end)
+--GUI.CreateCustomButton("Text GUIVertical", customdir .. "assets/TextGUIIcon3.png", UDim2.new(1, -56, 0, 15), function() end, function() end)
 local TextGui = GuiLibrary.CreateCustomWindow({
 	["Name"] = "Text GUI", 
-	["Icon"] = "vape/assets/TextGUIIcon1.png", 
+	["Icon"] = customdir .. "assets/TextGUIIcon1.png", 
 	["IconSize"] = 21
 })
 local TextGuiCircleObject = {["CircleList"] = {}}
---GUI.CreateCustomButton("Text GUI", "vape/assets/TextGUIIcon2.png", UDim2.new(1, -23, 0, 15), function() TextGui.SetVisible(true) end, function() TextGui.SetVisible(false) end, "OptionsButton")
+--GUI.CreateCustomButton("Text GUI", customdir .. "assets/TextGUIIcon2.png", UDim2.new(1, -23, 0, 15), function() TextGui.SetVisible(true) end, function() TextGui.SetVisible(false) end, "OptionsButton")
 GUI.CreateCustomToggle({
 	["Name"] = "Text GUI", 
-	["Icon"] = "vape/assets/TextGUIIcon3.png",
+	["Icon"] = customdir .. "assets/TextGUIIcon3.png",
 	["Function"] = function(callback) TextGui.SetVisible(callback) end,
 	["Priority"] = 2
 })	
@@ -940,7 +940,7 @@ end
 
 local TargetInfo = GuiLibrary.CreateCustomWindow({
 	["Name"] = "Target Info",
-	["Icon"] = "vape/assets/TargetInfoIcon1.png",
+	["Icon"] = customdir .. "assets/TargetInfoIcon1.png",
 	["IconSize"] = 16
 })
 local TargetInfoDisplayNames = TargetInfo.CreateToggle({
@@ -1052,7 +1052,7 @@ shared.VapeTargetInfo = {
 }
 GUI.CreateCustomToggle({
 	["Name"] = "Target Info", 
-	["Icon"] = "vape/assets/TargetInfoIcon2.png", 
+	["Icon"] = customdir .. "assets/TargetInfoIcon2.png", 
 	["Function"] = function(callback) TargetInfo.SetVisible(callback) end,
 	["Priority"] = 1
 })
