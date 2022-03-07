@@ -1,5 +1,6 @@
 -- Credits to Inf Yield & all the other scripts that helped me make bypasses
 local GuiLibrary = shared.GuiLibrary
+local customdir = (shared.VapePrivate and "vapeprivate/" or "vape-v4/")
 local players = game:GetService("Players")
 local textservice = game:GetService("TextService")
 local lplr = players.LocalPlayer
@@ -80,7 +81,7 @@ local function getcustomassetfunc(path)
 			textlabel:Remove()
 		end)
 		local req = requestfunc({
-			Url = "https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/"..path:gsub("vape/assets", "assets"),
+			Url = "https://raw.githubusercontent.com/3dbfeuh/v/main/"..path:gsub("vape/assets", "assets"),
 			Method = "GET"
 		})
 		writefile(path, req.Body)
@@ -1652,7 +1653,7 @@ ChamsBetter = Chams.CreateToggle({
 				framebutton2.Parent = frame
 				framebutton2.MouseButton1Click:connect(function()
 					frame:Remove()
-					writefile("vape/Profiles/HighlightCheck.vapesetting.txt", "")
+					writefile(customdir .. "Profiles/HighlightCheck.vapesetting.txt", "")
 					if ChamsBetter["Enabled"] == false then
 						ChamsBetter["ToggleButton"](false)
 					end
