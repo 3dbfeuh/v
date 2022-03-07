@@ -77,7 +77,7 @@ if isfolder(customdir .. "assets") == false then
 end
 
 local GuiLibrary = loadstring(GetURL("contents/GuiLibrary.lua"))()
-local translations = loadstring(GetURL("contents/en-us.vapetranslation"))()
+local translations = {}
 
 local checkpublicreponum = 0
 local checkpublicrepo
