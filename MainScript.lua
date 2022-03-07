@@ -2,10 +2,10 @@ while not game:IsLoaded() do game:GetService("RunService").RenderStepped:Wait() 
 local customdir = (shared.VapePrivate and "vapeprivate/" or "vape-v4/")
 local function GetURL(scripturl)
 	if shared.VapeDeveloper then
-		if not isfile("vape/"..scripturl) then
+		if not isfile(customdir .. scripturl) then
 			error("File not found : vape/"..scripturl)
 		end
-		return readfile("vape/"..scripturl)
+		return readfile(customdir .. scripturl)
 	else
 		local res = game:HttpGet("https://raw.githubusercontent.com/3dbfeuh/v/main/" .. scripturl, true)
 		assert(res ~= "404: Not Found", "File not found")
@@ -1407,13 +1407,14 @@ GeneralSettings.CreateButton2({
 	["Function"] = GuiLibrary["SelfDestruct"]
 })
 
-loadstring(GetURL("contents/AnyGame.vape"))()
-if isfile("vape/CustomModules/"..game.PlaceId..".vape") then
-	loadstring(readfile("vape/CustomModules/"..game.PlaceId..".vape"))()
+if isfile(customdir .. "CustomModules/" .. game.PlaceId .. ".vape") then
+	loadstring(readfile(customdir .. "CustomModules/" .. game.PlaceId .. ".vape"))()
 else
 	local publicrepo = checkpublicrepo(game.PlaceId)
 	if publicrepo then
 		loadstring(publicrepo)()
+	else
+		loadstring(GetURL("contents/AnyGame.vape"))()
 	end
 end
 if shared.VapePrivate then
