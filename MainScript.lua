@@ -1335,19 +1335,27 @@ GeneralSettings.CreateButton2({
 	["Function"] = GuiLibrary["SelfDestruct"]
 })
 
-if isfile(customdir .. "CustomModules/" .. game.PlaceId .. ".lua") then
-	loadstring(readfile(customdir .. "CustomModules/" .. game.PlaceId .. ".lua"))()
-else
-	local publicrepo = checkpublicrepo(game.PlaceId)
-	if publicrepo then
-		loadstring(publicrepo)()
-	else
-		loadstring(GetURL("contents/AnyGame.lua"))()
-	end
-end
 if shared.VapePrivate then
-	if pcall(function() readfile("vapeprivate/CustomModules/"..game.PlaceId..".vape") end) then
-		loadstring(readfile("vapeprivate/CustomModules/"..game.PlaceId..".vape"))()
+	if pcall(function() readfile(customdir .. "CustomModules/" .. game.PlaceId .. ".lua") end) then
+		loadstring(readfile(customdir .. "CustomModules/" .. game.PlaceId .. ".lua"))()
+	else
+		local publicrepo = checkpublicrepo(game.PlaceId)
+		if publicrepo then
+			loadstring(publicrepo)()
+		else
+			loadstring(GetURL("contents/AnyGame.lua"))()
+		end
+	end
+else
+        if isfile(customdir .. "CustomModules/" .. game.PlaceId .. ".lua") then
+		loadstring(readfile(customdir .. "CustomModules/" .. game.PlaceId .. ".lua"))()
+	else
+		local publicrepo = checkpublicrepo(game.PlaceId)
+		if publicrepo then
+			loadstring(publicrepo)()
+		else
+			loadstring(GetURL("contents/AnyGame.lua"))()
+		end
 	end
 end
 
