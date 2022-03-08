@@ -1,6 +1,6 @@
 if shared.VapeExecuted then
 	local VERSION = "v4.07" .. (shared.VapePrivate and " PRIVATE" or "")
-	local customdir = (shared.VapePrivate and "vapeprivate/" or "vape-v4/")
+	local customdir = shared.VapeCustomDirectory
 	local rainbowvalue = 0
 	local cam = game:GetService("Workspace").CurrentCamera
 	local getasset = getsynasset or getcustomasset
