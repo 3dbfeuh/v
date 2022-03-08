@@ -116,7 +116,7 @@ return {
             Settings[var] = bool
         end
     end,
-    ["Get"] = function(var, bool)
+    ["Get"] = function(var)
         if var ~= nil and Settings[var] ~= nil then
             return Settings[var]
         end
