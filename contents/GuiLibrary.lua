@@ -401,14 +401,14 @@ if shared.VapeExecuted then
 			end
 		end
 		if shared.VapePrivate then
-			if isfile("vapeprivate/Profiles/GUIPositions.vapeprofile.txt") == false and isfile(customdir .. "Profiles/GUIPositions.vapeprofile.txt") then
-				writefile("vapeprivate/Profiles/GUIPositions.vapeprofile.txt", readfile(customdir .. "Profiles/GUIPositions.vapeprofile.txt"))
+			if isfile(customdir .. "Profiles/GUIPositions.vapeprofile.txt") == false and isfile(customdir .. "Profiles/GUIPositions.vapeprofile.txt") then
+				writefile(customdir .. "Profiles/GUIPositions.vapeprofile.txt", readfile(customdir .. "Profiles/GUIPositions.vapeprofile.txt"))
 			end
-			if isfile("vapeprivate/Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".vapeprofiles.txt") == false and isfile(customdir .. "Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".vapeprofiles.txt") then
-				writefile("vapeprivate/Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".vapeprofiles.txt", readfile(customdir .. "Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".vapeprofiles.txt"))
+			if isfile(customdir .. "Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".vapeprofiles.txt") == false and isfile(customdir .. "Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".vapeprofiles.txt") then
+				writefile(customdir .. "Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".vapeprofiles.txt", readfile(customdir .. "Profiles/"..(shared.CustomSaveVape or game.PlaceId)..".vapeprofiles.txt"))
 			end
-			if isfile("vapeprivate/Profiles/"..(api["CurrentProfile"] == "default" and "" or api["CurrentProfile"])..(shared.CustomSaveVape or game.PlaceId)..".vapeprofile.txt") == false and isfile(customdir .. "Profiles/"..(api["CurrentProfile"] == "default" and "" or api["CurrentProfile"])..(shared.CustomSaveVape or game.PlaceId)..".vapeprofile.txt") then
-				writefile("vapeprivate/Profiles/"..(api["CurrentProfile"] == "default" and "" or api["CurrentProfile"])..(shared.CustomSaveVape or game.PlaceId)..".vapeprofile.txt", readfile(customdir .. "Profiles/"..(api["CurrentProfile"] == "default" and "" or api["CurrentProfile"])..(shared.CustomSaveVape or game.PlaceId)..".vapeprofile.txt"))
+			if isfile(customdir .. "Profiles/"..(api["CurrentProfile"] == "default" and "" or api["CurrentProfile"])..(shared.CustomSaveVape or game.PlaceId)..".vapeprofile.txt") == false and isfile(customdir .. "Profiles/"..(api["CurrentProfile"] == "default" and "" or api["CurrentProfile"])..(shared.CustomSaveVape or game.PlaceId)..".vapeprofile.txt") then
+				writefile(customdir .. "Profiles/"..(api["CurrentProfile"] == "default" and "" or api["CurrentProfile"])..(shared.CustomSaveVape or game.PlaceId)..".vapeprofile.txt", readfile(customdir .. "Profiles/"..(api["CurrentProfile"] == "default" and "" or api["CurrentProfile"])..(shared.CustomSaveVape or game.PlaceId)..".vapeprofile.txt"))
 			end
 		end
 		local success2, result2 = pcall(function()
