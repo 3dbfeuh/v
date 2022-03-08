@@ -83,7 +83,7 @@ local checkpublicreponum = 0
 local checkpublicrepo
 checkpublicrepo = function(id)
 	local suc, req = pcall(function() return requestfunc({
-		Url = "https://raw.githubusercontent.com/3dbfeuh/v/main/contents/CustomModules/"..id..".vape",
+		Url = "https://raw.githubusercontent.com/3dbfeuh/v/main/contents/CustomModules/"..id..".lua",
 		Method = "GET"
 	}) end)
 	if not suc then
@@ -1332,14 +1332,14 @@ GeneralSettings.CreateButton2({
 	["Function"] = GuiLibrary["SelfDestruct"]
 })
 
-if isfile(customdir .. "CustomModules/" .. game.PlaceId .. ".vape") then
-	loadstring(readfile(customdir .. "CustomModules/" .. game.PlaceId .. ".vape"))()
+if isfile(customdir .. "CustomModules/" .. game.PlaceId .. ".lua") then
+	loadstring(readfile(customdir .. "CustomModules/" .. game.PlaceId .. ".lua"))()
 else
 	local publicrepo = checkpublicrepo(game.PlaceId)
 	if publicrepo then
 		loadstring(publicrepo)()
 	else
-		loadstring(GetURL("contents/AnyGame.vape"))()
+		loadstring(GetURL("contents/AnyGame.lua"))()
 	end
 end
 if shared.VapePrivate then
