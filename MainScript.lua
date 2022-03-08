@@ -1,5 +1,5 @@
 while not game:IsLoaded() do game:GetService("RunService").RenderStepped:Wait() end
-local customdir = (shared.VapePrivate and "vapeprivate/" or "vape-v4/")
+local customdir = (shared.VapePrivate and "vape-v4-private/" or "vape-v4/")
 shared.VapeCustomDirectory = customdir
 local function GetURL(scripturl)
 	if shared.VapeDeveloper then
