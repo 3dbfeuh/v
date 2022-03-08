@@ -1,5 +1,6 @@
 while not game:IsLoaded() do game:GetService("RunService").RenderStepped:Wait() end
 local customdir = (shared.VapePrivate and "vapeprivate/" or "vape-v4/")
+shared.VapeCustomDirectory = customdir
 local function GetURL(scripturl)
 	if shared.VapeDeveloper then
 		if not isfile(customdir .. scripturl) then
@@ -1253,6 +1254,7 @@ GuiLibrary["SelfDestruct"] = function()
 	shared.VapePrivate = nil
 	shared.VapeSwitchServers = nil
 	shared.GuiLibrary = nil
+	shared.VapeCustomDirectory = nil
 	GuiLibrary["KeyInputHandler"]:Disconnect()
 	GuiLibrary["KeyInputHandler2"]:Disconnect()
 	if MiddleClickInput then
@@ -1272,6 +1274,7 @@ ModuleSettings.CreateButton2({
 		shared.VapeSwitchServers = true
 		shared.VapeOpenGui = true
 		shared.VapePrivate = vapeprivate
+		shared.VapeCustomDirectory = customdir
 		loadstring(GetURL("MainScript.lua"))()
 	end
 })
