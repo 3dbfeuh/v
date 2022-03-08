@@ -2,7 +2,7 @@ local GuiLibrary = shared.GuiLibrary
 local GetLib = function(str) return loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/3dbfeuh/v/main/contents/Lib/" .. tostring(str)))() end
 local runcode = function(func) func() end
 runcode(function()
-    local Silent_Lib = GetLib("Silent/arsenal.lua")
+    local Silent_Lib = GetLib("Silent/Dynamic.lua")
     local SilentAim = {["Enabled"] = false} SilentAim = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateOptionsButton({
         ["Name"] = "SilentAim",
         ["Function"] = function(callback)
