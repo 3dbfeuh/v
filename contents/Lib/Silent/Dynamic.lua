@@ -115,5 +115,10 @@ return {
         if var ~= nil and Settings[var] ~= nil and bool ~= nil then
             Settings[var] = bool
         end
+    end,
+    ["Get"] = function(var, bool)
+        if var ~= nil and Settings[var] ~= nil then
+            return Settings[var]
+        end
     end
 }
