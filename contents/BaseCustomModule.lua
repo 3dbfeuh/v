@@ -1,5 +1,5 @@
 local GuiLibrary = shared.GuiLibrary
-local customdir = (shared.VapePrivate and "vapeprivate/" or "vape-v4/")
+local customdir = shared.VapeCustomDirectory
 local players = game:GetService("Players")
 local textservice = game:GetService("TextService")
 local lplr = players.LocalPlayer
