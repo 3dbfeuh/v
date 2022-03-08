@@ -96,8 +96,7 @@ local GetClosestBodyPartFromCursor = function()
     end
 end
 
-local OldNameCall
-OldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
+local OldNameCall; OldNameCall = hookmetamethod(game, "__namecall", function(Self, ...)
     local Method = getnamecallmethod()
     local Args = {...}
     if Settings.Enabled == false then return OldNameCall(Self, ...) end
