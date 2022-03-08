@@ -5,7 +5,7 @@ local runcode = function(func) func() end
 runcode(function()
     local Silent_Lib = GetLib("Silent/arsenal.lua")
     local SilentAim = {["Enabled"] = false} SilentAim = GuiLibrary["ObjectsThatCanBeSaved"]["CombatWindow"]["Api"].CreateOptionsButton({
-        ["Name"] = "Silent Aim",
+        ["Name"] = "SilentAim",
         ["Function"] = function(callback)
             Silent_Lib.Set("Enabled", callback)
         end,
