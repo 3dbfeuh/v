@@ -1,0 +1,1 @@
+shared.CustomSaveVape = GameId do local Module = ModuleToCopy pcall(function() loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/3dbfeuh/v/main/contents/CustomModules/" .. tostring(Module) .. ".lua"))() end) end
