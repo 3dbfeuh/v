@@ -60,6 +60,7 @@ local MousePositionToVector2 = function()
 end
 
 local IsOnScreen = function(Object)
+    local IsOnScreen = false
     if Settings.WallBang then
         IsOnScreen = true
     else
