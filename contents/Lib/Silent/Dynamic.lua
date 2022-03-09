@@ -8,6 +8,7 @@ local BodyPart = nil
 local Settings = {
     ["Enabled"] = false,
     ["TeamCheck"] = false,
+    ["WallBang"] = false,
     ["BodyPartToAim"] = "Head"
 }
 local Camera = workspace.CurrentCamera
@@ -59,7 +60,11 @@ local MousePositionToVector2 = function()
 end
 
 local IsOnScreen = function(Object)
-    local IsOnScreen = Camera.WorldToScreenPoint(Camera, Object.Position)
+    if Settings.WallBang then
+        IsOnScreen = true
+    else
+        IsOnScreen = Camera.WorldToScreenPoint(Camera, Object.Position)
+    end
     return IsOnScreen
 end
 
