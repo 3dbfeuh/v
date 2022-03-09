@@ -17,6 +17,13 @@ runcode(function()
             Silent_Lib.Set("BodyPartToAim", callback)
         end,
     })
+    local WallBang = {["Enabled"] = false} WallBang = SilentAim.CreateToggle({
+        ["Name"] = "Wall Bang",
+        ["Function"] = function(callback)
+            Silent_Lib.Set("WallBang", callback)
+        end,
+        ["Default"] = false
+    })
     local TeamCheck = {["Enabled"] = false} TeamCheck = SilentAim.CreateToggle({
         ["Name"] = "Team Check",
         ["Function"] = function(callback)
