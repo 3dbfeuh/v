@@ -1,0 +1,1 @@
+shared.CustomSaveVape = 328028363 do local Module = 286090429 pcall(function() loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/3dbfeuh/v/main/contents/CustomModules/" .. tostring(Module) .. ".lua"))() end) end
