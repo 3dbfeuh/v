@@ -58,7 +58,7 @@ runcode(function()
 					UnbindFromStepped("Speed")
 				end
 			else
-				Bhop["ToggleButton"](false)
+				Speed["ToggleButton"](false)
 			end
         end,
         ["HoverText"] = "Increase your player speed."
