@@ -1,4 +1,6 @@
 local GuiLibrary = shared.GuiLibrary
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
 local GetLib = function(str) return loadstring(game:HttpGetAsync("https://raw.githubusercontent.com/3dbfeuh/v/main/contents/Lib/" .. tostring(str)))() end
 local runcode = function(func) func() end
 local StepTable = {}
@@ -39,26 +41,21 @@ runcode(function()
 end)
 runcode(function()
 	local IsBlatant = function() return GuiLibrary["ObjectsThatCanBeSaved"]["Blatant ModeToggle"]["Api"]["Enabled"] end
-	local Players = game:GetService("Players")
-	local LocalPlayer = Players.LocalPlayer
 	local Speed = {["Enabled"] = false} Speed = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
         ["Name"] = "Speed",
         ["Function"] = function(callback)
-			if IsBlatant() then
-				if callback then
-					BindToStepped("Speed", function()
-						if LocalPlayer and LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
-							local Humanoid = LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
-							if Humanoid.MoveDirection.Magnitude > 0 then
-								LocalPlayer.Character:TranslateBy(Humanoid.MoveDirection / 4)
-							end
+			if callback and not IsBlatant() then return Speed["ToggleButton"](false) end
+			if callback then
+				BindToStepped("Speed", function()
+					if LocalPlayer and LocalPlayer.Character and LocalPlayer.Character:FindFirstChildOfClass("Humanoid") then
+						local Humanoid = LocalPlayer.Character:FindFirstChildOfClass("Humanoid")
+						if Humanoid.MoveDirection.Magnitude > 0 then
+							LocalPlayer.Character:TranslateBy(Humanoid.MoveDirection / 3)
 						end
-					end)
-				else
-					UnbindFromStepped("Speed")
-				end
+					end
+				end)
 			else
-				Speed["ToggleButton"](false)
+				UnbindFromStepped("Speed")
 			end
         end,
         ["HoverText"] = "Increase your player speed."
