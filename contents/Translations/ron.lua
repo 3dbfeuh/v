@@ -1,3 +1,4 @@
 return {
-  ["Tracers"] = "Marcatori"
+  ["Tracers"] = "Marcatori",
+  ["Team Check"] = "Verificare Echipă"
 }
