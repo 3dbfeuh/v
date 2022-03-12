@@ -11,7 +11,7 @@ if shared.VapeExecuted then
 		["Settings"] = {["GUIObject"] = {["Type"] = "Custom", ["Color"] = 0.64}, ["SearchObject"] = {["Type"] = "Custom", ["List"] = {}}},
 		["Profiles"] = {["default"] = {["Keybind"] = "", ["Selected"] = true}},
 		["RainbowSpeed"] = 1,
-		["Language"] = "en-us",
+		["Language"] = isfile(customdir .. "language.dat") and readfile(customdir .. "language.dat") or "en-us",
 		["GUIKeybind"] = "RightShift",
 		["CurrentProfile"] = "default",
 		["KeybindCaptured"] = false,
@@ -35,7 +35,8 @@ if shared.VapeExecuted then
 		end
 	end
 
-	local translations = {}
+	local translations = nil
+	if api.Language ~= "en-us" then translations = loadstring(GetURL("contents/Translations/" .. api.Language .. ".lua"))() else translations = {} end
 
 	local function getprofile()
 		for i,v in pairs(api["Profiles"]) do
