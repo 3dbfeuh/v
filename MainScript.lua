@@ -44,15 +44,12 @@ if shared.VapeExecuted then
 else
 	shared.VapeExecuted = true
 end
-
 if isfolder(customdir:gsub("/", "")) == false then
 	makefolder(customdir:gsub("/", ""))
 end
---[[
-if isfolder("vape") == false then
-	makefolder("vape")
+if isfile(customdir .. "language.dat") == false then
+	writefile(customdir .. "language.dat", "en-us")
 end
-]]--
 if isfile(customdir .. "assetsversion.dat") == false then
 	writefile(customdir .. "assetsversion.dat", "1")
 end
@@ -78,7 +75,8 @@ if isfolder(customdir .. "assets") == false then
 end
 
 local GuiLibrary = loadstring(GetURL("contents/GuiLibrary.lua"))()
-local translations = {}
+local translations = nil
+if GuiLibrary["Language"] ~= "en-us" then translations = loadstring(GetURL("contents/Translations/" .. GuiLibrary["Language"] .. ".lua"))() else translations = {} end
 
 local checkpublicreponum = 0
 local checkpublicrepo
