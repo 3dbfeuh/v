@@ -7,5 +7,6 @@ return {
   ["Profiles"] = "Profiluri",  
   ["Tracers"] = "Marcatori",
   ["Team Check"] = "Verificare Echipă",
+  ["Team Names"] = "Nume Echipă",
   ["Speed"] = "Viteză"
 }
