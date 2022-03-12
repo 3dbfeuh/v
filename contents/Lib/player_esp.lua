@@ -123,7 +123,7 @@ local Recursion = {} do
         end)
     end
     
-    for index, player in pairs(Players:GetChildren()) do
+    for index, player in next, Players:GetChildren() do
         CreateESP(player)
     end
     
