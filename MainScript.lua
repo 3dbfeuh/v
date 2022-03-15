@@ -138,7 +138,11 @@ end
 shared.GuiLibrary = GuiLibrary
 local workspace = game:GetService("Workspace")
 local cam = workspace.CurrentCamera
-local selfdestruct = false
+local selfdestructsave = coroutine.create(function()
+	while task.wait(10) do
+		GuiLibrary["SaveSettings"]()
+	end
+end)
 local GUI = GuiLibrary.CreateMainWindow()
 local Combat = GuiLibrary.CreateWindow({
 	["Name"] = "Combat", 
@@ -1239,9 +1243,9 @@ local teleportfunc = game:GetService("Players").LocalPlayer.OnTeleport:Connect(f
 end)
 
 GuiLibrary["SelfDestruct"] = function()
-	game:GetService("UserInputService").OverrideMouseIconBehavior = Enum.OverrideMouseIconBehavior.None
-	selfdestruct = true
+	spawn(function() coroutine.close(selfdestructsave) end)
 	GuiLibrary["SaveSettings"]()
+        game:GetService("UserInputService").OverrideMouseIconBehavior = Enum.OverrideMouseIconBehavior.None
 	for i,v in pairs(GuiLibrary["ObjectsThatCanBeSaved"]) do
 		if (v["Type"] == "Button" or v["Type"] == "OptionsButton") and v["Api"]["Enabled"] then
 			v["Api"]["ToggleButton"](false)
@@ -1255,9 +1259,7 @@ GuiLibrary["SelfDestruct"] = function()
 	shared.VapeCustomDirectory = nil
 	GuiLibrary["KeyInputHandler"]:Disconnect()
 	GuiLibrary["KeyInputHandler2"]:Disconnect()
-	if MiddleClickInput then
-		MiddleClickInput:Disconnect()
-	end
+	if MiddleClickInput then MiddleClickInput:Disconnect() end
 	teleportfunc:Disconnect()
 	GuiLibrary["MainGui"]:Remove()
 	GuiLibrary["MainBlur"]:Remove()
@@ -1382,10 +1384,4 @@ if shared.VapeOpenGui then
 	shared.VapeOpenGui = nil
 end
 
-spawn(function()
-	while task.wait(10) do
-		if not selfdestruct then
-			GuiLibrary["SaveSettings"]()
-		end
-	end
-end)
+coroutine.resume(selfdestructsave)
