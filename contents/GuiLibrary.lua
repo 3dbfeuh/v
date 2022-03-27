@@ -6301,5 +6301,6 @@ if shared.VapeExecuted then
 		end
 	end)
 	searchbar.FocusLost:Connect(function() end)
+	api["MainRescale"]:GetPropertyChangedSignal("Scale"):connect(function() searchbarmain.Position = UDim2.new(0.5 / api["MainRescale"].Scale, -110, 0, -23) end)
 	return api
 end
