@@ -3,7 +3,8 @@ local Recursion = {} do
         ["Enabled"] = false,
         ["Tracers"] = false,
         ["Team Names"] = false,
-        ["Team Check"] = false
+        ["Team Check"] = false,
+        ["Overrides"] = {}
     }
     
     local Players = game:GetService("Players")
@@ -15,11 +16,19 @@ local Recursion = {} do
     local legOffset = Vector3.new(0, 3, 0)
     
     local GetUsername = function(plr)
+        local ov = ESP_Settings.Overrides.GetUsername
+        if ov ~= nil then return ov(plr) end
         if plr.DisplayName ~= plr.Name then
             return plr.DisplayName
         else
             return plr.Name
         end
+    end
+
+    local GetTeam = function(plr)
+        local ov = ESP_Settings.Overrides.GetTeam
+        if ov ~= nil then return ov(plr) end
+        return {["TeamColor"] = plr.TeamColor, ["Color"] = plr.TeamColor.Color, ["Name"] = tostring(plr.Team.Name)}
     end
     
     local CreateESP; CreateESP = function(plr)
@@ -69,12 +78,12 @@ local Recursion = {} do
                     Box.Visible = true
                     Names.Visible = true
     
-                    if plr.TeamColor then
-                        Box.Color = plr.TeamColor.Color
-                        Lines.Color = plr.TeamColor.Color
-                        Names.Color = plr.TeamColor.Color
+                    if GetTeam(plr).TeamColor then
+                        Box.Color = GetTeam(plr).Color
+                        Lines.Color = GetTeam(plr).Color
+                        Names.Color = GetTeam(plr).Color
                         if #Teams:GetChildren() ~= 0 and ESP_Settings["Team Names"] then
-                            Names.Text = GetUsername(plr) .. " | " .. tostring(plr.Team.Name)
+                            Names.Text = GetUsername(plr) .. " | " .. GetTeam(plr).Name
                         else
                             Names.Text = GetUsername(plr)
                         end
@@ -84,7 +93,7 @@ local Recursion = {} do
                         Names.Color = Color3.new(1, 1, 1)
                     end
     
-                    if ESP_Settings["Team Check"] and plr.TeamColor == LocalPlayer.TeamColor then
+                    if ESP_Settings["Team Check"] and GetTeam(plr).TeamColor == GetTeam(LocalPlayer).TeamColor then
                         Box.Visible = false
                         Names.Visible = false
                     else
@@ -93,7 +102,7 @@ local Recursion = {} do
                     end
     
                     if ESP_Settings["Tracers"] then
-                        if ESP_Settings["Team Check"] and plr.TeamColor == LocalPlayer.TeamColor then
+                        if ESP_Settings["Team Check"] and GetTeam(plr).TeamColor == GetTeam(LocalPlayer).TeamColor then
                             Lines.Visible = false
                         else
                             Lines.Visible = true
