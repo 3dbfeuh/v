@@ -152,6 +152,13 @@ local Recursion = {} do
             if var ~= nil and ESP_Settings[var] ~= nil then
                 return ESP_Settings[var]
             end
+        end,
+        ["Override"] = function(var, val, func)
+            if val == false then
+                ESP_Settings.Overrides[var] = nil
+            elseif val == true then
+                ESP_Settings.Overrides[var] = func
+            end
         end
     }
 end
