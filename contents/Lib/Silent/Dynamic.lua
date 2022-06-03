@@ -100,7 +100,7 @@ local OldNameCall; OldNameCall = hookmetamethod(game, "__namecall", function(Sel
     local Method = getnamecallmethod()
     local Args = {...}
     if Settings.Enabled == false then return OldNameCall(Self, ...) end
-    if Method == "FindPartOnRayWithIgnoreList" and BodyPart ~= nil then
+    if Method == "Raycast" and BodyPart ~= nil then
         Args[1] = PositionToRay(Camera.CFrame.Position, BodyPart.Position)
         return OldNameCall(Self, unpack(Args))
     end
